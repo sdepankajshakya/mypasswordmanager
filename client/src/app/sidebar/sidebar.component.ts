@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, Output, EventEmitter, ChangeDetectorRef, OnInit } from '@angular/core';
 import { ModalComponent } from '../shared/components/modal/modal.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RecordService } from '../shared/services/record.service';
 
 @Component({
   selector: 'sidebar',
@@ -31,7 +32,7 @@ export class SidebarComponent implements OnInit {
   recordForm!: FormGroup;
   categoryForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private recordService: RecordService) { }
   
   ngOnInit(): void {
     this.initForms();
@@ -97,6 +98,7 @@ export class SidebarComponent implements OnInit {
   // Handle confirmation action (called when the "Confirm" button is clicked)
   onConfirmAction(): void {
     if (this.modalContent === 'record' && this.recordForm.valid) {
+      this.recordService.setRecord(this.recordForm.value);
       const selectedCategory = this.recordForm.value.category; // Get selected category
       this.openDetailsComponent(selectedCategory); // Dynamically open DetailsComponent with category
       this.isModalOpen = false;

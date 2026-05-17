@@ -21,24 +21,33 @@
     <div class="form-group">
         <label for="expiryDate">Expiry Date</label>
         <input id="expiryDate" formControlName="expiryDate" placeholder="MM/YY" />
-        <div *ngIf="cardForm.get('expiryDate')?.invalid && cardForm.get('expiryDate')?.touched" class="error-message">
+        <div *ngIf="cardForm.get('expiryDate')?.hasError('required') && cardForm.get('expiryDate')?.touched" class="error-message">
             Expiry Date is required.
+        </div>
+        <div *ngIf="cardForm.get('expiryDate')?.invalid && cardForm.get('expiryDate')?.touched" class="error-message">
+            Expiry Date is invalid.
         </div>
     </div>
 
     <div class="form-group">
         <label for="cvv">CVV</label>
         <input id="cvv" formControlName="cvv" type="password" placeholder="CVV" />
-        <div *ngIf="cardForm.get('cvv')?.invalid && cardForm.get('cvv')?.touched" class="error-message">
+        <div *ngIf="cardForm.get('cvv')?.hasError('required') && cardForm.get('cvv')?.touched" class="error-message">
             CVV is required.
+        </div>
+        <div *ngIf="cardForm.get('cvv')?.invalid && cardForm.get('cvv')?.touched" class="error-message">
+            CVV is invalid.
         </div>
     </div>
 
     <div class="form-group">
         <label for="pin">PIN</label>
         <input id="pin" formControlName="pin" type="password" placeholder="Enter PIN" />
-        <div *ngIf="cardForm.get('pin')?.invalid && cardForm.get('pin')?.touched" class="error-message">
+        <div *ngIf="cardForm.get('pin')?.hasError('required') && cardForm.get('pin')?.touched" class="error-message">
             PIN is required.
+        </div>
+        <div *ngIf="cardForm.get('pin')?.invalid && cardForm.get('pin')?.touched" class="error-message">
+            PIN is invalid.
         </div>
     </div>
 
